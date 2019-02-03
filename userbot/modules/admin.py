@@ -98,7 +98,7 @@ async def thanos(e):
         if (await e.get_reply_message()).sender_id in BRAIN_CHECKER:
             await e.edit("`Ban Error! I am not supposed to ban this user`")
             return
-        await e.edit("`Whacking the pest!`")
+        await e.edit("`Taking last photo of this bitch!Wow! going to kill!`")
         time.sleep(5)
         try:
             await bot(
@@ -113,7 +113,7 @@ async def thanos(e):
                 )
                 return
         await e.delete()
-        await e.respond("`Banned!`")
+        await e.respond("`Banned that Bitch !`")
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP,
