@@ -19,13 +19,13 @@ async def permitpm(e):
             except:
                 return
             E = is_approved(e.chat_id)
-            if not E and e.text != "`Bleep Blop! This is a Bot. Don't fret. \n\nMy Master hasn't approved you to PM. \
-Please wait for my Master to look in, he would mostly approve PMs.\n\n\
-As far as i know, he doesn't usually approve Retards.`" :
+            if not E and e.text != "`Hey! This is jeepeo's Assistant. \n\nJeepeo doesn't said me about your PM. \
+I will say about you to Jeepeo . He actually reply to all execpt👇.\n\n\
+He doesn't reply to retard/shit people .😝`" :
                 await e.reply(
-                    "`Bleep Blop! This is a Bot. Don't fret. \n\nMy Master hasn't approved you to PM. \
-Please wait for my Master to look in, he would mostly approve PMs.\n\n\
-As far as i know, he doesn't usually approve Retards.`"
+                    "` Hey! This is jeepeo's Assistant\n\nJeepeo doesn't said me about your PM \
+I will say about you to Jeepeo . He actually reply to all execpt👇\n\n\
+He doesn't reply to retard/shit people.😝.`"
                 )
                 if NOTIF_OFF:
                     await bot.send_read_acknowledge(e.chat_id)
@@ -35,7 +35,7 @@ As far as i know, he doesn't usually approve Retards.`"
                     COUNT_PM[e.chat_id] = COUNT_PM[e.chat_id] + 1
                 if COUNT_PM[e.chat_id] > 4:
                     await e.respond(
-                        "`You were spamming my Master's PM, which I don't like. I'mma Report Spam.`"
+                        "`Bitch! You are spaming chat! Bitch!mc bc mf ! I am going to report you bitch!.`"
                     )
                     del COUNT_PM[e.chat_id]
                     await bot(BlockRequest(e.chat_id))
@@ -79,7 +79,7 @@ async def approvepm(e):
             await e.edit("`Running on Non-SQL mode!`")
             return
         approve(e.chat_id)
-        await e.edit("`Approved to PM!`")
+        await e.edit("`Mmm! You are approved to PM by Jeepeo`")
         if LOGGER:
             aname = await bot.get_entity(e.chat_id)
             name0 = str(aname.first_name)
@@ -90,5 +90,5 @@ async def approvepm(e):
                 + "](tg://user?id="
                 + str(e.chat_id)
                 + ")"
-                + " was approved to PM you.",
+                + " Jeepeo has approved you to PM!.",
             )
