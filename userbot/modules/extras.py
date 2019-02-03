@@ -7,8 +7,8 @@ from telethon.tl.functions.channels import LeaveChannelRequest, ExportInviteRequ
 @bot.on(events.NewMessage(outgoing=True, pattern='^\.timer '))
 @bot.on(events.MessageEdited(outgoing=True, pattern='^\.timer '))
 async def timer_blankx(e):
-	txt=e.text[7:] + '\nDeleting in '
-	j=10
+	txt=e.text[7:] + '\nJeepeo , Im Deleting in '
+	j=15
 	k=j
 	for j in range(j):
 		await e.edit(txt + str(k))
