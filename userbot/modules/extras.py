@@ -76,3 +76,12 @@ async def leave(e):
             await bot(LeaveChannelRequest(e.chat_id))
         else:
             await e.edit('`This is dead group!`')
+@bot.on(events.NewMessage(pattern='^\.figlet (.+)'))
+@bot.on(events.MessageEdited(pattern='^\.figlet (.+)'))
+async def figlety(e):
+	l=['figlet']
+	l+=e.pattern_match.group(1).split(' ')
+	p='```'
+	p+=subprocess.run(l, stdout=subprocess.PIPE).stdout.decode()
+	p+='```'
+	await e.edit(p)
