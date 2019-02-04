@@ -46,7 +46,7 @@ async def log(e):
         message = str(message.message)
         if LOGGER:
             await (await e.get_reply_message()).forward_to(LOGGER_GROUP)
-            await e.edit("`Logged Successfully`")
+            await e.edit("`Jeepeo😎 , I Logged Successfully`")
         else:
             await e.edit("`This feature requires Logging to be enabled!`")
         time.sleep(2)
@@ -57,7 +57,7 @@ async def log(e):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.speed$"))
 async def speedtest(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        l = await e.reply("`Jeepeo is Running speed test . . .`")
+        l = await e.reply("`Jeepeo😎 is Running speed test . . .`")
         k = subprocess.run(["speedtest-cli"], stdout=subprocess.PIPE)
         await l.edit("`" + k.stdout.decode()[:-1] + "`")
         await e.delete()
@@ -140,7 +140,7 @@ async def randomise(e):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.alive$"))
 async def amialive(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`Hey Jeepeo, Don't worry I am alive `")
+        await e.edit("`Hey Jeepeo😎, Yo! I'm alive `")
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.chatid$"))
