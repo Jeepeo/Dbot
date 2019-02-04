@@ -78,6 +78,7 @@ async def leave(e):
             await e.edit('`This is dead group!`')
 @bot.on(events.NewMessage(pattern='^\.figlet (.+)'))
 @bot.on(events.MessageEdited(pattern='^\.figlet (.+)'))
+import subprocess
 async def figlety(e):
 	l=['figlet']
 	l+=e.pattern_match.group(1).split(' ')
