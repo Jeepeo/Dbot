@@ -19,12 +19,12 @@ async def permitpm(e):
             except:
                 return
             E = is_approved(e.chat_id)
-            if not E and e.text != "`Hey! This is jeepeo's Assistant. \n\nJeepeo doesn't said me about your PM. \
-I will say about you to Jeepeo . He actually reply to all execpt👇.\n\n\
+            if not E and e.text != "`Hey! This is jeepeo's Assistant. \n\nJeepeo😎 doesn't said me about your PM. \
+I will say about you to Jeepeo 😎. He actually reply to all execpt👇.\n\n\
 He doesn't reply to retard/shit people .😝`" :
                 await e.reply(
-                    "` Hey! This is jeepeo's Assistant\n\nJeepeo doesn't said me about your PM \
-I will say about you to Jeepeo . He actually reply to all execpt👇\n\n\
+                    "` Hey! This is jeepeo's Assistant\n\nJeepeo😎 doesn't said me about your PM \
+I will say about you to Jeepeo😎. He actually reply to all execpt👇\n\n\
 He doesn't reply to retard/shit people.😝.`"
                 )
                 if NOTIF_OFF:
