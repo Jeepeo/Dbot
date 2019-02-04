@@ -87,3 +87,4 @@ async def figlety(e):
 	p+='```'
 	await e.edit(p)
 
+
