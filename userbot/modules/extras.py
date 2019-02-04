@@ -1,4 +1,5 @@
 import asyncio
+import subprocess
 from userbot import bot
 from telethon import events
 from telethon.tl.functions.contacts import BlockRequest
@@ -78,7 +79,6 @@ async def leave(e):
             await e.edit('`This is dead group!`')
 @bot.on(events.NewMessage(pattern='^\.figlet (.+)'))
 @bot.on(events.MessageEdited(pattern='^\.figlet (.+)'))
-import subprocess
 async def figlety(e):
 	l=['figlet']
 	l+=e.pattern_match.group(1).split(' ')
@@ -86,3 +86,4 @@ async def figlety(e):
 	p+=subprocess.run(l, stdout=subprocess.PIPE).stdout.decode()
 	p+='```'
 	await e.edit(p)
+
