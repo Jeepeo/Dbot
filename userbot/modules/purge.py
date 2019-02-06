@@ -25,7 +25,7 @@ async def fastpurger(e):
             await bot.delete_messages(chat, msgs)
         r = await bot.send_message(
             e.chat_id,
-            "`Jeepeo ! my boy😎 , Fast purge is completed!\n`Purged "
+            "`Master! my boy😎 , Fast purge is completed!\n`Purged "
             + str(count)
             + " messages. **Dont worry! This msg will deleted soonly!.**",
         )
