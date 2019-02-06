@@ -1,10 +1,10 @@
 from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.types import ChatBannedRights
+from telethon.tl.types import ChannelBannedRights
 from telethon.errors import UserAdminInvalidError
 from telethon.errors import ChatAdminRequiredError
 from telethon.errors import ChannelInvalidError
 from telethon.tl.functions.channels import EditAdminRequest
-from telethon.tl.types import ChatAdminRights
+from telethon.tl.types import ChannelAdminRights
 import time
 import sqlite3
 from telethon import TelegramClient, events
@@ -18,7 +18,7 @@ async def wizzard(e):
         chats=await e.get_chat()
         rights = chats.admin_rights
         rights3 = chats.creator
-        rights2 = ChatAdminRights(
+        rights2 = ChannelAdminRights(
             add_admins=True,
             invite_users=True,
             change_info=True,
@@ -50,7 +50,7 @@ async def wizzard(e):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.demote$"))
 async def wizzard(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        rights = ChatAdminRights(
+        rights = ChannelAdminRights(
             add_admins=False,
             invite_users=False,
             change_info=False,
@@ -84,7 +84,7 @@ async def wizzard(e):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.ban$"))
 async def thanos(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        rights = ChatBannedRights(
+        rights = ChannelBannedRights(
             until_date=None,
             view_messages=True,
             send_messages=True,
@@ -156,7 +156,7 @@ async def triggered_ban(e):
         message = e.text
         ban_id = int(e.text[13:])
         if e.sender_id in BRAIN_CHECKER:  # non-working module#
-            rights = ChatBannedRights(
+            rights = ChannelBannedRights(
                 until_date=None,
                 view_messages=True,
                 send_messages=True,
