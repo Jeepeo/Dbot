@@ -181,23 +181,39 @@ For using Heroku CLI on termux, please Google on it.
 - Deploy.
 
 For noobs:-
-Make a app in heroku
-add the heroku postgres add-on
-go to app settings (In heroku website)
-Click reveal config vars
-Type your config.env in it (There will be two columns ie, API_KEY : 012345678912345678)
-Now make a GitHub account 
-Duplicate repo of anyone
-(for duplicating mine)
+
+Make a app in heroku.
+
+add the heroku postgres add-on.
+
+go to app settings (In heroku website).
+
+Click reveal config vars.
+
+Type your config.env in it (There will be two columns ie, API_KEY : 012345678912345678).
+
+Now make a GitHub account .
+
+Duplicate repo of anyone.
+
+(for duplicating mine).
+
   In terminal
+  
      :`git clone --bare www.github.com/Jeepeo/Dbot.git`
-     :`cd Dbot.git
+     
+     :`cd Dbot.git`
+     
      :`git push --mirror <Your repo link(make sure that you make a repo and get clone link)`
+     
      :Voila You made it
      
 Then, deploy in heroku
+
 Link your github account 
+
 Click Deploy !
+
 Now your Bot is alive
 
 
