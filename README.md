@@ -91,6 +91,13 @@ Change YOUR_USER and YOUR_DB_NAME appropriately.
 - finally:
 
 `psql YOUR_DB_NAME -h YOUR_HOST YOUR_USER`
+If you are getting errors , try using these commands (if it doesn't solved contact support group)
+
+`mkdir -p $PREFIX/var/lib/postgresql`
+`initdb $PREFIX/var/lib/postgresql`
+
+To start you DB server 
+`pg_ctl -D $PREFIX/var/lib/postgresql start`
 
 This will allow you to connect to your database via your terminal.
 By default, YOUR_HOST should be 127.0.0.1:5432.
@@ -172,6 +179,42 @@ For using Heroku CLI on termux, please Google on it.
 - If you need Database Commands, provision a heroku postgres instance.
 - Push you bot along with `config.env` and `userbot.session` with the heroku cli, you need `git add -f` to add both of them.
 - Deploy.
+
+For noobs:-
+
+Make a app in heroku.
+
+add the heroku postgres add-on.
+
+go to app settings (In heroku website).
+
+Click reveal config vars.
+
+Type your config.env in it (There will be two columns ie, API_KEY : 012345678912345678).
+
+Now make a GitHub account .
+
+Duplicate repo of anyone.
+
+(for duplicating mine).
+
+  In terminal
+  
+     :`git clone --bare www.github.com/Jeepeo/Dbot.git`
+     
+     :`cd Dbot.git`
+     
+     :`git push --mirror <Your repo link(make sure that you make a repo and get clone link)`
+     
+     :Voila You made it
+     
+Then, deploy in heroku
+
+Link your github account 
+
+Click Deploy !
+
+Now your Bot is alive
 
 
 ### Available Commands on readme have been removed due to non-maintainability. It follows marie syntax, replace all ! and / with a .
