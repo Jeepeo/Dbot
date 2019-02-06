@@ -104,7 +104,12 @@ logging.basicConfig(
 LOGS = logging.getLogger(__name__)
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     LOGS.error(
+<<<<<<< HEAD
         "You MUST have a python version of at least 3.6. Multiple features depend on this. Bot quitting."
+=======
+        "You MUST have a python version of at least 3.6." \
+        "Multiple features depend on this. Bot quitting."
+>>>>>>> 871fa92... [REFACTOR] : Linting the stuff (3)
     )
     quit(1)
 try:
@@ -130,7 +135,12 @@ except NameError:
         LOGS = logging.getLogger(__name__)
 else:
     LOGS.error(
+<<<<<<< HEAD
         "Your config file seems to be un-edited. Doing so is not allowed. Bot exiting!"
+=======
+        "Your config file seems to be un-edited."
+        "Doing so is not allowed. Bot exiting!"
+>>>>>>> 871fa92... [REFACTOR] : Linting the stuff (3)
     )
     quit(1)
 bot = TelegramClient("userbot", API_KEY, API_HASH)

@@ -21,6 +21,7 @@ from telethon.tl.types import ChatAdminRights, ChatBannedRights
 from userbot import (BRAIN_CHECKER, LOGGER, LOGGER_GROUP, SPAM, SPAM_ALLOWANCE,
                      bot)
 
+
 @bot.on(events.NewMessage(outgoing=True, pattern="^.promote$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.promote$"))
 async def wizzard(e):
@@ -61,6 +62,7 @@ async def wizzard(e):
         await e.edit("`Promoted the bitch Successfully!`")
 
 
+
 @bot.on(events.NewMessage(outgoing=True, pattern="^.demote$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.demote$"))
 async def demote(e):
@@ -98,6 +100,7 @@ async def demote(e):
 >>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
             return
         await e.edit("`Demoted the bitch Successfully!`")
+
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.ban$"))
@@ -228,12 +231,12 @@ async def triggered_ban(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.unmute$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.unmute$"))
-async def unmute(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+async def unmute(unmot):
+    if not unmot.text[0].isalpha() and unmot.text[0] not in ("/", "#", "@", "!"):
         from userbot.modules.sql_helper.spam_mute_sql import unmute
 
-        unmute(e.chat_id, str((await e.get_reply_message()).sender_id))
-        await e.edit("```Unmuted Successfully```")
+        unmute(unmot.chat_id, str((await unmot.get_reply_message()).sender_id))
+        await unmot.edit("```Unmuted Successfully```")
 
 
 @bot.on(events.NewMessage(incoming=True))
@@ -244,6 +247,7 @@ async def muter(e):
         from userbot.modules.sql_helper.gmute_sql import is_gmuted
     except:
         return
+<<<<<<< HEAD
     L = is_muted(e.chat_id)
     K = is_gmuted(e.sender_id)
     if L:
@@ -253,6 +257,18 @@ async def muter(e):
     for i in K:
         if i.sender == str(e.sender_id):
             await e.delete()
+=======
+    mootd = is_muted(moot.chat_id)
+    gmootd = is_gmuted(moot.sender_id)
+    if mootd:
+        for i in mootd:
+            if str(i.sender) == str(moot.sender_id):
+                await moot.delete()
+    for i in gmootd:
+        if i.sender == str(moot.sender_id):
+            await moot.delete()
+>>>>>>> 871fa92... [REFACTOR] : Linting the stuff (3)
+
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.ungmute$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.ungmute$"))
@@ -264,6 +280,7 @@ async def ungmute(e):
             await e.edit('`Ooh my Jeepeo connect me to DB!`')
         ungmute(str((await e.get_reply_message()).sender_id))
         await e.edit("```Ungmuted Successfully```")
+
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.gmute$"))
