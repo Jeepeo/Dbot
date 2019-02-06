@@ -6,6 +6,7 @@ from userbot import LOGGER, LOGGER_GROUP
 import time
 
 
+
 @bot.on(events.NewMessage(outgoing=True, pattern="^.purge$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.purge$"))
 async def fastpurger(e):
