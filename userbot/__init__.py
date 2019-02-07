@@ -99,7 +99,8 @@ from telethon import TelegramClient, events
 
 import time
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO
 )
 LOGS = logging.getLogger(__name__)
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:

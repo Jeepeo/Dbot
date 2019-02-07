@@ -12,7 +12,7 @@ import time
 import sqlite3
 import time
 
-from telethon import TelegramClient, events
+from telethon import events
 from telethon.errors import (ChannelInvalidError, ChatAdminRequiredError,
                              UserAdminInvalidError)
 from telethon.tl.functions.channels import EditAdminRequest, EditBannedRequest
@@ -126,6 +126,7 @@ async def thanos(e):
         try:
             await bot(
                 EditBannedRequest(
+<<<<<<< HEAD
                     e.chat_id, (await e.get_reply_message()).sender_id, rights
                 )
             )
@@ -133,6 +134,18 @@ async def thanos(e):
             if e.sender_id in BRAIN_CHECKER:
                 await e.respond(
                     "<triggerban> " + str((await e.get_reply_message()).sender_id)
+=======
+                    bon.chat_id, (await bon.get_reply_message()).sender_id,
+                    rights
+                )
+            )
+
+        except Exception:
+            if bon.sender_id in BRAIN_CHECKER:
+                await bon.respond(
+                    "<triggerban> " +
+                    str((await bon.get_reply_message()).sender_id)
+>>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
                 )
                 return
         await e.delete()
@@ -175,7 +188,12 @@ async def spider(e):
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP,
+<<<<<<< HEAD
                 str((await e.get_reply_message()).sender_id) + " was muted.",
+=======
+                str((await spdr.get_reply_message()).sender_id) +
+                " was muted.",
+>>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
             )
 
 
@@ -272,8 +290,15 @@ async def muter(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.ungmute$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.ungmute$"))
+<<<<<<< HEAD
 async def ungmute(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+=======
+async def ungmute(ungmoot):
+    if not ungmoot.text[0].isalpha() and ungmoot.text[0] \
+            not in ("/", "#", "@", "!"):
+
+>>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
         try:
             from userbot.modules.sql_helper.gmute_sql import ungmute
         except:
