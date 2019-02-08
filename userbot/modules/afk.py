@@ -13,16 +13,16 @@ async def mention_afk(e):
         if ISAFK:
             if e.sender_id not in USERS:
                 await e.reply(
-                    "Ooof! Jeepeo is not here becoZ He is```"
+                    "My Master is AFK! due to```"
                     + AFKREASON
-                    + "```. I would say to him about your msg😋"
+                    + "```. I will ping him ! when he comes online."
                 )
                 USERS.update({e.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-                        "You bitch ! I said Jeepeo is not here! becoZ He is```"
+                        "He is AFK! I will ping him when he comes ! Reason::```"
                         + AFKREASON
                         + "```"
                     )
@@ -42,16 +42,16 @@ async def afk_on_pm(e):
         if ISAFK:
             if e.sender_id not in USERS:
                 await e.reply(
-                    "Ooof! Jeepeo Is not here becoZ he is ```"
+                    "My Master is AFK! Due to ```"
                     + AFKREASON
-                    + "``` I would say him about your msg"
+                    + "``` I will ping him when he comes online!"
                 )
                 USERS.update({e.sender_id: 1})
                 COUNT_MSG = COUNT_MSG + 1
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-                        "You bitch ! I said you Jeepeo is not here BecoZ He is ```"
+                        "My Master is AFK! I will ping him when he comes online Reason:: ```"
                         + AFKREASON
                         + "```"
                     )

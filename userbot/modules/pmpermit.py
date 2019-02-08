@@ -19,12 +19,12 @@ async def permitpm(e):
             except:
                 return
             E = is_approved(e.chat_id)
-            if not E and e.text != "`Hey! This is jeepeo's Assistant. \n\nJeepeo😎 doesn't said me about your PM. \
-I will say about you to Jeepeo 😎. He actually reply to all execpt👇.\n\n\
+            if not E and e.text != "`Hey! This is My Master's Assistant. \n\nMy master doesn't said me about your PM. \
+I will say about you to My master!😎 He actually reply to all execpt👇.\n\n\
 He doesn't reply to retard/shit people .😝`" :
                 await e.reply(
-                    "` Hey! This is jeepeo's Assistant\n\nJeepeo😎 doesn't said me about your PM \
-I will say about you to Jeepeo😎. He actually reply to all execpt👇\n\n\
+                    "` Hey! This is My Master's Assistant\n\nMy Master doesn't said me about your PM \
+I will say about you to My Master😎. He actually reply to all execpt👇\n\n\
 He doesn't reply to retard/shit people.😝.`"
                 )
                 if NOTIF_OFF:
@@ -79,7 +79,7 @@ async def approvepm(e):
             await e.edit("`Running on Non-SQL mode!`")
             return
         approve(e.chat_id)
-        await e.edit("`Mmm! You are approved to PM by Jeepeo😎`")
+        await e.edit("`Mmm! You are approved to PM ,My Master!`")
         if LOGGER:
             aname = await bot.get_entity(e.chat_id)
             name0 = str(aname.first_name)
@@ -90,7 +90,7 @@ async def approvepm(e):
                 + "](tg://user?id="
                 + str(e.chat_id)
                 + ")"
-                + " Jeepeo😎 has approved you to PM!.",
+                + " My Master! has approved you to PM!.",
             )
 @bot.on(events.NewMessage(outgoing=True, pattern="^.disapprove$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.disapprove$"))
@@ -102,7 +102,7 @@ async def disapprovepm(e):
             await e.edit("`Running on Non-SQL mode!`")
             return
         dissprove(e.chat_id)
-        await e.edit("`Sad!😐 You have been disapproved to PM Jeepeo😎`")
+        await e.edit("`Sad!😐 You have been disapproved to PM! My master!`")
         if LOGGER:
             aname = await bot.get_entity(e.chat_id)
             name0 = str(aname.first_name)
@@ -113,5 +113,5 @@ async def disapprovepm(e):
                 + "](tg://user?id="
                 + str(e.chat_id)
                 + ")"
-                + " Was disapproved to PM! Jeepeo😎.",
+                + " Was disapproved to PM! My .",
             )
