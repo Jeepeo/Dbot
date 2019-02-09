@@ -26,6 +26,7 @@ subprocess.run(
     ],
     stdout=subprocess.PIPE,
 )
+<<<<<<< HEAD
 if UPDATER=="True":
     subprocess.run(
         [
@@ -96,6 +97,8 @@ else:
 import logging
 from sqlalchemy import create_engine
 from telethon import TelegramClient, events
+=======
+>>>>>>> 98e8a44... userbot: main, init: remove redundant commands and bump to v2.2-a
 
 import time
 logging.basicConfig(
