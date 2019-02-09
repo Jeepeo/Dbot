@@ -40,12 +40,24 @@ async def fastpurger(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.purgeme"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.purgeme"))
+<<<<<<< HEAD
 async def purgeme(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
         count = int(message[9:])
         i = 1
         async for message in bot.iter_messages(e.chat_id, from_user="me"):
+=======
+async def purgeme(delme):
+    if not delme.text[0].isalpha() and delme.text[0] not in ("/", "#", "@", "!"):
+        message = delme.text
+        chat = await delme.get_input_chat()
+        self_id = await bot.get_peer_id('me')
+        count = int(message[9:])
+        i = 1
+
+        async for message in bot.iter_messages(chat, self_id):
+>>>>>>> d014ba3... [FIXUP] : modules: purge: use wider entity for chat
             if i > count + 1:
                 break
             i = i + 1
@@ -67,10 +79,19 @@ async def purgeme(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.delmsg$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.delmsg$"))
+<<<<<<< HEAD
 async def delmsg(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         i = 1
         async for message in bot.iter_messages(e.chat_id, from_user="me"):
+=======
+async def delmsg(delme):
+    if not delme.text[0].isalpha() and delme.text[0] not in ("/", "#", "@", "!"):
+        self_id = await bot.get_peer_id('me')
+        chat = await delme.get_input_chat()
+        i = 1
+        async for message in bot.iter_messages(chat, self_id):
+>>>>>>> d014ba3... [FIXUP] : modules: purge: use wider entity for chat
             if i > 2:
                 break
             i = i + 1
@@ -79,12 +100,23 @@ async def delmsg(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.editme"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.editme"))
+<<<<<<< HEAD
 async def editer(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         message = e.text
         string = str(message[8:])
         i = 1
         async for message in bot.iter_messages(e.chat_id, from_user="me"):
+=======
+async def editer(edit):
+    if not edit.text[0].isalpha() and edit.text[0] not in ("/", "#", "@", "!"):
+        message = edit.text
+        chat = await edit.get_input_chat()
+        self_id = await bot.get_peer_id('me')
+        string = str(message[8:])
+        i = 1
+        async for message in bot.iter_messages(chat, self_id):
+>>>>>>> d014ba3... [FIXUP] : modules: purge: use wider entity for chat
             if i == 2:
                 await message.edit(string)
                 await e.delete()
