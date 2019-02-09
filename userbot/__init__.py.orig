@@ -26,6 +26,7 @@ subprocess.run(
     ],
     stdout=subprocess.PIPE,
 )
+<<<<<<< HEAD
 if UPDATER=="True":
     subprocess.run(
         [
@@ -96,10 +97,13 @@ else:
 import logging
 from sqlalchemy import create_engine
 from telethon import TelegramClient, events
+=======
+>>>>>>> 98e8a44... userbot: main, init: remove redundant commands and bump to v2.2-a
 
 import time
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO
 )
 LOGS = logging.getLogger(__name__)
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
