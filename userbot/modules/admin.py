@@ -258,6 +258,7 @@ async def triggered_ban(triggerbon):
             send_inline=True,
             embed_links=True,
         )
+<<<<<<< HEAD
     if ban_id in BRAIN_CHECKER:
         await e.edit("`Sorry Master!`")
         return
@@ -269,6 +270,12 @@ async def triggered_ban(triggerbon):
     await bot.send_message(e.chat_id, "Job was done, Master! Gimme Cookies!")
 >>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
 =======
+=======
+
+        if ban_id in BRAIN_CHECKER:
+            await triggerbon.edit("`Sorry Master!`")
+            return
+>>>>>>> 078c5dd... modules: admin: fix indentation error
 
         time.sleep(5)
         await bot(EditBannedRequest(triggerbon.chat_id, ban_id, rights))
