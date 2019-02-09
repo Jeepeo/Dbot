@@ -142,7 +142,7 @@ async def disapprovepm(e):
                 "["
                 + name0
                 + "](tg://user?id="
-                + str(e.chat_id)
+                + str(apprvpm.chat_id)
                 + ")"
                 + " Was disapproved to PM! My .",
             )
