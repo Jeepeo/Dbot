@@ -1,9 +1,14 @@
 from async_generator import aclosing
+<<<<<<< HEAD
 import asyncio
 from telethon import TelegramClient, events
 from userbot import bot
 from userbot import LOGGER, LOGGER_GROUP
 import time
+=======
+from telethon import events
+from telethon.errors import rpcbaseerrors
+>>>>>>> 851d860... userbot: modules: purge: introduce .delmsg as /del equivalents
 
 
 
@@ -87,6 +92,7 @@ async def delmsg(e):
 =======
 async def delmsg(delme):
     if not delme.text[0].isalpha() and delme.text[0] not in ("/", "#", "@", "!"):
+<<<<<<< HEAD
         self_id = await bot.get_peer_id('me')
         chat = await delme.get_input_chat()
         i = 1
@@ -96,6 +102,24 @@ async def delmsg(delme):
                 break
             i = i + 1
             await message.delete()
+=======
+        msg_src = await delme.get_reply_message()
+        if delme.reply_to_msg_id:
+            try:
+                await msg_src.delete()
+                await delme.delete()
+                if LOGGER:
+                    await bot.send_message(
+                        LOGGER_GROUP,
+                        "Deletion of message was successful"
+                        )
+            except Exception is rpcbaseerrors.BadRequestError:
+                if LOGGER:
+                    await bot.send_message(
+                        LOGGER_GROUP,
+                        "Well, I can't delete a message"
+                        )
+>>>>>>> 851d860... userbot: modules: purge: introduce .delmsg as /del equivalents
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.editme"))
