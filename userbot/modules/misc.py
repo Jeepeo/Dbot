@@ -13,7 +13,7 @@ import requests
 from telethon import functions, events
 
 from userbot import LOGGER, LOGGER_GROUP, bot
-from telethon.tl.functions.help import GetNearestDcRequest
+
 from userbot.modules.rextester.api import Rextester, UnknownLanguage
 
 DOGBIN_URL = "https://del.dog/"
@@ -145,6 +145,7 @@ async def log(e):
         await e.delete()
 
 
+<<<<<<< HEAD
 @bot.on(events.NewMessage(outgoing=True, pattern="^.speed$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.speed$"))
 async def speedtest(e):
@@ -166,6 +167,8 @@ async def neardc(e):
     )
 
 
+=======
+>>>>>>> 97d1d61... userbot: modules: www: split some networky-stuff modules out of misc
 @bot.on(events.NewMessage(outgoing=True, pattern="^.hash (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.hash (.*)"))
 async def hash(e):
@@ -251,17 +254,6 @@ async def amialive(e):
 async def chatidgetter(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("Chat ID: `" + str(e.chat_id) + "`")
-
-
-@bot.on(events.NewMessage(outgoing=True, pattern="^.pingme$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.pingme$"))
-async def pingme(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        start = datetime.now()
-        await e.edit("`Pong!`")
-        end = datetime.now()
-        ms = (end - start).microseconds / 1000
-        await e.edit("Pong!\n%sms" % (ms))
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.sleep( [0-9]+)?$"))
