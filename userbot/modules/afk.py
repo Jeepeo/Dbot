@@ -24,13 +24,9 @@ async def mention_afk(e):
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-<<<<<<< HEAD
-                        "He is AFK! I will ping him when he comes ! Reason::```"
-=======
                         "Sorry! But my boss is still not here. "
                         "Try to ping him a little later. I am sorry😖."
                         "He told me he was busy with ```"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
                         + AFKREASON
                         + "```"
                     )
@@ -59,13 +55,9 @@ async def afk_on_pm(e):
             elif e.sender_id in USERS:
                 if USERS[e.sender_id] % 5 == 0:
                     await e.reply(
-<<<<<<< HEAD
-                        "My Master is AFK! I will ping him when he comes online Reason:: ```"
-=======
                         "Sorry! But my boss is still not here. "
                         "Try to ping him a little later. I am sorry😖."
                         "He told me he was busy with ```"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
                         + AFKREASON
                         + "```"
                     )
@@ -184,27 +176,6 @@ async def type_afk_is_not_true(e):
                     + str(USERS[i])
                     + " messages`",
                 )
-<<<<<<< HEAD
-                for i in USERS:
-                    name = await bot.get_entity(i)
-                    name0 = str(name.first_name)
-                    await bot.send_message(
-                        LOGGER_GROUP,
-                        "["
-                        + name0
-                        + "](tg://user?id="
-                        + str(i)
-                        + ")"
-                        + " sent you "
-                        + "`"
-                        + str(USERS[i])
-                        + " messages`",
-                    )
-            COUNT_MSG = 0
-            USERS = {}
-            AFKREASON = "Not Online"
-=======
         COUNT_MSG = 0
         USERS = {}
         AFKREASON = "No Reason"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
