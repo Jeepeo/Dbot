@@ -152,16 +152,6 @@ async def hoi(ha):
     await ha.edit("Hoi!😄")
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True, pattern="^.owo"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.owo"))
-async def faces(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message = e.text
-        if message[5:]:
-            message = str(message[5:])
-=======
 @bot.on(events.NewMessage(outgoing=True, pattern="^.owo (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.owo (.*)"))
 async def faces(owo):
@@ -170,7 +160,6 @@ async def faces(owo):
         message = owo.text
         if message[5:]:
             message = owo.pattern_match.group(1)
->>>>>>> 269178b... [REFACTOR]: modules: memes: uwu
         elif textx:
             message = textx
             message = str(message.message)
