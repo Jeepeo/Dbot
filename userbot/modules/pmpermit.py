@@ -1,9 +1,12 @@
 import sqlite3
+import time
 
 from telethon import events
 from telethon.tl.functions.contacts import BlockRequest
+from telethon.tl.functions.contacts import UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
-import time
+from telethon.tl.functions.users import GetFullUserRequest
+
 from userbot import COUNT_PM, LOGGER, LOGGER_GROUP, NOTIF_OFF, PM_AUTO_BAN, bot
 
 
@@ -87,7 +90,10 @@ async def approvepm(apprvpm):
             await apprvpm.edit("`Running on Non-SQL mode!`")
             return
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b5f41b1... modules: pmpermit: Rework mechanics and introduce Reply-to-do-stuff
         if apprvpm.reply_to_msg_id:
             reply = await apprvpm.get_reply_message()
             replied_user = await bot(GetFullUserRequest(reply.from_id))
@@ -113,6 +119,44 @@ async def approvepm(apprvpm):
 @bot.on(events.NewMessage(outgoing=True,pattern="^.block$"))
 @bot.on(events.MessageEdited(outgoing=True,pattern="^.block$"))
 async def blockpm(block):
-    await block.respond("`You are gonna be blocked from PM-ing my Master!")
-    time.sleep(3)
-    await bot(BlockRequest(block.chat_id))
+    if not block.text[0].isalpha() and block.text[0] not in ("/", "#", "@", "!"):
+        await block.respond("`You are gonna be blocked from PM-ing my Master!`")
+
+        if block.reply_to_msg_id:
+            reply = await block.get_reply_message()
+            replied_user = await bot(GetFullUserRequest(reply.from_id))
+            aname = replied_user.user.id
+            name0 = str(replied_user.user.first_name)
+            await bot(BlockRequest(replied_user.user.id))
+        else:
+            await bot(BlockRequest(block.chat_id))
+            aname = await bot.get_entity(block.chat_id)
+            name0 = str(aname.first_name)
+
+        if LOGGER:
+            await bot.send_message(
+                LOGGER_GROUP,
+                f"[{name0}](tg://user?id={block.chat_id})"
+                " was blocc'd!.",
+            )
+
+@bot.on(events.NewMessage(outgoing=True,pattern="^.unblock$"))
+@bot.on(events.MessageEdited(outgoing=True,pattern="^.unblock$"))
+async def unblockpm(unblock):
+    if not unblock.text[0].isalpha() and unblock.text[0] \
+            not in ("/", "#", "@", "!") and unblock.reply_to_msg_id:
+
+        await unblock.respond("`My Master has forgiven you to PM now`")
+
+        if unblock.reply_to_msg_id:
+            reply = await unblock.get_reply_message()
+            replied_user = await bot(GetFullUserRequest(reply.from_id))
+            name0 = str(replied_user.user.first_name)
+            await bot(UnblockRequest(replied_user.user.id))
+
+        if LOGGER:
+            await bot.send_message(
+                LOGGER_GROUP,
+                f"[{name0}](tg://user?id={unblock.chat_id})"
+                " was unblocc'd!.",
+            )
