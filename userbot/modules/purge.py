@@ -10,33 +10,44 @@ from userbot import LOGGER, LOGGER_GROUP, bot
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.purge$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.purge$"))
-async def fastpurger(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        chat = await e.get_input_chat()
+async def fastpurger(purg):
+    if not purg.text[0].isalpha() and purg.text[0] not in ("/", "#", "@", "!"):
+        chat = await purg.get_input_chat()
         msgs = []
         count = 0
-        async with aclosing(bot.iter_messages(chat, min_id=e.reply_to_msg_id)) as h:
-            async for m in h:
-                msgs.append(m)
+        async with aclosing(
+                bot.iter_messages(chat, min_id=purg.reply_to_msg_id)
+                )as replies:
+
+            async for smsgs in replies:
+                msgs.append(smsgs)
                 count = count + 1
-                msgs.append(e.reply_to_msg_id)
+                msgs.append(purg.reply_to_msg_id)
                 if len(msgs) == 100:
                     await bot.delete_messages(chat, msgs)
                     msgs = []
+
         if msgs:
             await bot.delete_messages(chat, msgs)
+<<<<<<< HEAD
         r = await bot.send_message(
             e.chat_id,
             "`Master! my boy😎 , Fast purge is completed!\n`Purged "
+=======
+        done = await bot.send_message(
+            purg.chat_id,
+            "`Fast purge complete!\n`Purged "
+>>>>>>> 4d85bd6... [REFACTOR]: modules: purge: cleanups
             + str(count)
             + " messages. **Dont worry! This msg will deleted soonly!.**",
         )
+
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP, "Purge of " + str(count) + " messages done successfully."
             )
         time.sleep(2)
-        await r.delete()
+        await done.delete()
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.purgeme"))
@@ -44,12 +55,11 @@ async def fastpurger(e):
 async def purgeme(delme):
     if not delme.text[0].isalpha() and delme.text[0] not in ("/", "#", "@", "!"):
         message = delme.text
-        chat = await delme.get_input_chat()
         self_id = await bot.get_peer_id('me')
         count = int(message[9:])
         i = 1
 
-        async for message in bot.iter_messages(chat, self_id):
+        async for message in bot.iter_messages(delme.chat_id, self_id):
             if i > count + 1:
                 break
             i = i + 1
@@ -123,8 +133,13 @@ async def selfdestruct(e):
             + str(counter)
             + " seconds`"
         )
+<<<<<<< HEAD
         await e.delete()
         x=await bot.send_message(e.chat_id, text)
+=======
+        await destroy.delete()
+        smsg = await bot.send_message(destroy.chat_id, text)
+>>>>>>> 4d85bd6... [REFACTOR]: modules: purge: cleanups
         time.sleep(counter)
         await x.delete()
         if LOGGER:
