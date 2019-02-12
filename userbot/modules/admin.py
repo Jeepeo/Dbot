@@ -52,6 +52,7 @@ async def wizzard(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.demote$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.demote$"))
+<<<<<<< HEAD
 async def demote(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         rights = ChannelAdminRights(
@@ -62,6 +63,18 @@ async def demote(e):
             delete_messages=False,
             pin_messages=False,
             invite_link=False,
+=======
+async def demote(dmod):
+    """ For .demote command, do demote targeted person """
+    if not dmod.text[0].isalpha() and dmod.text[0] not in ("/", "#", "@", "!"):
+        trights = ChatAdminRights(
+            add_admins=None,
+            invite_users=None,
+            change_info=None,
+            ban_users=None,
+            delete_messages=None,
+            pin_messages=None
+>>>>>>> fab5fe2... [REFACTOR]: modules: admin: a nifty changes for your life
         )
         chat=await e.get_chat()
         rights = chat.admin_rights
@@ -72,11 +85,21 @@ async def demote(e):
         if not rights and not rights2:
             await e.edit("`Ooof Jeepeo, U aren't an admin!`")
             return
+<<<<<<< HEAD
         await e.edit("`Trying to demote the bitch.....`")
         time.sleep(3)
         try:
             await bot(
             EditAdminRequest(e.chat_id, (await e.get_reply_message()).sender_id, rights)
+=======
+        await dmod.edit("`Demoting...`")
+
+        try:
+            await bot(
+                EditAdminRequest(dmod.chat_id,
+                                 (await dmod.get_reply_message()).sender_id,
+                                 trights)
+>>>>>>> fab5fe2... [REFACTOR]: modules: admin: a nifty changes for your life
             )
         except Exception:
             await e.edit("`You Don't have sufficient permissions to demhott`")
@@ -202,9 +225,23 @@ async def triggered_ban(triggerbon):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.unmute$"))
 async def unmoot(unmot):
     if not unmot.text[0].isalpha() and unmot.text[0] not in ("/", "#", "@", "!"):
+        rights = ChatBannedRights(
+            until_date=None,
+            send_messages=None,
+            send_media=None,
+            send_stickers=None,
+            send_gifs=None,
+            send_games=None,
+            send_inline=None,
+            embed_links=None,
+            )
         from userbot.modules.sql_helper.spam_mute_sql import unmute
-
         unmute(unmot.chat_id, str((await unmot.get_reply_message()).sender_id))
+        await bot(EditBannedRequest(
+            unmot.chat_id,
+            unmot.sender_id,
+            rights
+            ))
         await unmot.edit("```Unmuted Successfully```")
 
 
@@ -218,21 +255,34 @@ async def muter(e):
         return
     mootd = is_muted(moot.chat_id)
     gmootd = is_gmuted(moot.sender_id)
+    rights = ChatBannedRights(
+                until_date=None,
+                send_messages=True,
+                send_media=True,
+                send_stickers=True,
+                send_gifs=True,
+                send_games=True,
+                send_inline=True,
+                embed_links=True,
+                )
     if mootd:
         for i in mootd:
             if str(i.sender) == str(moot.sender_id):
                 await moot.delete()
+                await bot(EditBannedRequest(
+                    moot.chat_id,
+                    moot.sender_id,
+                    rights
+                    ))
     for i in gmootd:
         if i.sender == str(moot.sender_id):
             await moot.delete()
-
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.ungmute$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.ungmute$"))
 async def ungmoot(ungmoot):
     if not ungmoot.text[0].isalpha() and ungmoot.text[0] \
             not in ("/", "#", "@", "!"):
-
         try:
             from userbot.modules.sql_helper.gmute_sql import ungmute
         except:
@@ -255,8 +305,14 @@ async def gmute(e):
             print(er)
             await e.edit("`Ooh my Jeepeo connect me to DB!`")
             return
+<<<<<<< HEAD
         gmute(str((await e.get_reply_message()).sender_id))
         await e.edit("`Grabs a huge, sticky duct tape!`")
+=======
+
+        gmute(str((await gspdr.get_reply_message()).sender_id))
+        await gspdr.edit("`Grabs a huge, sticky duct tape!`")
+>>>>>>> fab5fe2... [REFACTOR]: modules: admin: a nifty changes for your life
         time.sleep(5)
         await e.delete()
         await e.respond("`Taped!`")
