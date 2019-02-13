@@ -73,21 +73,10 @@ async def paste(pstl):
                     "`Dogbin URL`: {dogbin_final_url}\n`"
                     "Hastebin URL`: {hastebin_final_url}")
         else:
-<<<<<<< HEAD
-<<<<<<< HEAD
-            reply_text = f'`Pasted successfully!`\n\n`Dogbin URL`: Failed to reach dogbin\n`Hastebin URL`: {hastebin_final_url}'
-
-=======
-=======
->>>>>>> 2025885... modules: misc: fixup and cleanup too long strings
             reply_text = (
                 f"`Pasted successfully!`\n\n"
                 "`Dogbin URL`: `Failed to reach dogbin`"
                 "\n`Hastebin URL`: {hastebin_final_url}")
-<<<<<<< HEAD
->>>>>>> 2025885... modules: misc: fixup and cleanup too long strings
-=======
->>>>>>> 2025885... modules: misc: fixup and cleanup too long strings
 
         await pstl.edit(reply_text)
         if LOGGER:
