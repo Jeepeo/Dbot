@@ -152,25 +152,25 @@ async def hoi(ha):
     await ha.edit("Hoi!😄")
 
 
-@bot.on(events.NewMessage(outgoing=True, pattern="^.owo"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.owo"))
-async def faces(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message = e.text
+@bot.on(events.NewMessage(outgoing=True, pattern="^.owo (.*)"))
+@bot.on(events.MessageEdited(outgoing=True, pattern="^.owo (.*)"))
+async def faces(owo):
+    if not owo.text[0].isalpha() and owo.text[0] not in ("/", "#", "@", "!"):
+        textx = await owo.get_reply_message()
+        message = owo.text
         if message[5:]:
-            message = str(message[5:])
+            message = owo.pattern_match.group(1)
         elif textx:
             message = textx
             message = str(message.message)
-        faces = [
+        uwus = [
             "(・`ω´・)",
             ";;w;;",
             "owo",
             "UwU",
             ">w<",
             "^w^",
-            "\(^o\) (/o^)/",
+            r"\(^o\) (/o^)/",
             "( ^ _ ^)∠☆",
             "(ô_ô)",
             "~:o",
@@ -185,10 +185,10 @@ async def faces(e):
         reply_text = re.sub(r"(R|L)", "W", reply_text)
         reply_text = re.sub(r"n([aeiou])", r"ny\1", reply_text)
         reply_text = re.sub(r"N([aeiouAEIOU])", r"Ny\1", reply_text)
-        reply_text = re.sub(r"\!+", " " + random.choice(faces), reply_text)
+        reply_text = re.sub(r"\!+", " " + random.choice(uwus), reply_text)
         reply_text = reply_text.replace("ove", "uv")
-        reply_text += " " + random.choice(faces)
-        await e.edit(reply_text)
+        reply_text += " " + random.choice(uwus)
+        await owo.edit(reply_text)
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.react$"))
@@ -382,15 +382,6 @@ async def spongemocktext(mock):
         await mock.edit(reply_text)
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True, pattern="^.clap"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.clap"))
-async def claptext(e):
-    textx = await e.get_reply_message()
-    message = e.text
-    if message[6:]:
-        message = str(message[6:])
-=======
 @bot.on(events.NewMessage(outgoing=True, pattern="^.clap (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.clap (.*)"))
 async def claptext(memereview):
@@ -398,7 +389,6 @@ async def claptext(memereview):
     message = memereview.text
     if message[6:]:
         message = memereview.pattern_match.group(1)
->>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
     elif textx:
         message = textx
         message = str(message.message)
@@ -410,18 +400,11 @@ async def claptext(memereview):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.bt$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.bt$"))
-<<<<<<< HEAD
-async def bluetext(e):
-    if await e.get_reply_message():
-        await e.edit(
-            "`BLUETEXT MUST CLICK.\nAre you a stupid animal which is attracted to colours?`"
-=======
 async def bluetext(bt):
     if await bt.get_reply_message():
         await bt.edit(
             "`BLUETEXT MUST CLICK.`\n"
             "`Are you a stupid animal which is attracted to colours?`"
-            >>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
         )
 
 

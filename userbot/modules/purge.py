@@ -1,68 +1,59 @@
-from async_generator import aclosing
-<<<<<<< HEAD
 import asyncio
-from telethon import TelegramClient, events
-from userbot import bot
-from userbot import LOGGER, LOGGER_GROUP
 import time
-=======
+
+from async_generator import aclosing
 from telethon import events
 from telethon.errors import rpcbaseerrors
->>>>>>> 851d860... userbot: modules: purge: introduce .delmsg as /del equivalents
 
+from userbot import LOGGER, LOGGER_GROUP, bot
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.purge$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.purge$"))
-async def fastpurger(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        chat = await e.get_input_chat()
+async def fastpurger(purg):
+    if not purg.text[0].isalpha() and purg.text[0] not in ("/", "#", "@", "!"):
+        chat = await purg.get_input_chat()
         msgs = []
         count = 0
-        async with aclosing(bot.iter_messages(chat, min_id=e.reply_to_msg_id)) as h:
-            async for m in h:
-                msgs.append(m)
+        async with aclosing(
+                bot.iter_messages(chat, min_id=purg.reply_to_msg_id)
+                )as replies:
+
+            async for smsgs in replies:
+                msgs.append(smsgs)
                 count = count + 1
-                msgs.append(e.reply_to_msg_id)
+                msgs.append(purg.reply_to_msg_id)
                 if len(msgs) == 100:
                     await bot.delete_messages(chat, msgs)
                     msgs = []
+
         if msgs:
             await bot.delete_messages(chat, msgs)
-        r = await bot.send_message(
-            e.chat_id,
-            "`Master! my boy😎 , Fast purge is completed!\n`Purged "
+        done = await bot.send_message(
+            purg.chat_id,
+            "`Fast purge complete!\n`Purged "
             + str(count)
             + " messages. **Dont worry! This msg will deleted soonly!.**",
         )
+
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP, "Purge of " + str(count) + " messages done successfully."
             )
         time.sleep(2)
-        await r.delete()
+        await done.delete()
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.purgeme"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.purgeme"))
-<<<<<<< HEAD
-async def purgeme(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        message = e.text
-        count = int(message[9:])
-        i = 1
-        async for message in bot.iter_messages(e.chat_id, from_user="me"):
-=======
 async def purgeme(delme):
     if not delme.text[0].isalpha() and delme.text[0] not in ("/", "#", "@", "!"):
         message = delme.text
-        chat = await delme.get_input_chat()
         self_id = await bot.get_peer_id('me')
         count = int(message[9:])
         i = 1
 
-        async for message in bot.iter_messages(chat, self_id):
->>>>>>> d014ba3... [FIXUP] : modules: purge: use wider entity for chat
+        async for message in bot.iter_messages(delme.chat_id, self_id):
             if i > count + 1:
                 break
             i = i + 1
@@ -84,25 +75,8 @@ async def purgeme(delme):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.delmsg$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.delmsg$"))
-<<<<<<< HEAD
-async def delmsg(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        i = 1
-        async for message in bot.iter_messages(e.chat_id, from_user="me"):
-=======
 async def delmsg(delme):
     if not delme.text[0].isalpha() and delme.text[0] not in ("/", "#", "@", "!"):
-<<<<<<< HEAD
-        self_id = await bot.get_peer_id('me')
-        chat = await delme.get_input_chat()
-        i = 1
-        async for message in bot.iter_messages(chat, self_id):
->>>>>>> d014ba3... [FIXUP] : modules: purge: use wider entity for chat
-            if i > 2:
-                break
-            i = i + 1
-            await message.delete()
-=======
         msg_src = await delme.get_reply_message()
         if delme.reply_to_msg_id:
             try:
@@ -119,19 +93,10 @@ async def delmsg(delme):
                         LOGGER_GROUP,
                         "Well, I can't delete a message"
                         )
->>>>>>> 851d860... userbot: modules: purge: introduce .delmsg as /del equivalents
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.editme"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.editme"))
-<<<<<<< HEAD
-async def editer(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        message = e.text
-        string = str(message[8:])
-        i = 1
-        async for message in bot.iter_messages(e.chat_id, from_user="me"):
-=======
 async def editer(edit):
     if not edit.text[0].isalpha() and edit.text[0] not in ("/", "#", "@", "!"):
         message = edit.text
@@ -140,7 +105,6 @@ async def editer(edit):
         string = str(message[8:])
         i = 1
         async for message in bot.iter_messages(chat, self_id):
->>>>>>> d014ba3... [FIXUP] : modules: purge: use wider entity for chat
             if i == 2:
                 await message.edit(string)
                 await e.delete()
@@ -163,8 +127,8 @@ async def selfdestruct(e):
             + str(counter)
             + " seconds`"
         )
-        await e.delete()
-        x=await bot.send_message(e.chat_id, text)
+        await destroy.delete()
+        smsg = await bot.send_message(destroy.chat_id, text)
         time.sleep(counter)
         await x.delete()
         if LOGGER:

@@ -1,4 +1,3 @@
-
 import time
 
 from telethon import events
@@ -53,16 +52,16 @@ async def wizzard(e):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.demote$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.demote$"))
-async def demote(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        rights = ChannelAdminRights(
-            add_admins=False,
-            invite_users=False,
-            change_info=False,
-            ban_users=False,
-            delete_messages=False,
-            pin_messages=False,
-            invite_link=False,
+async def demote(dmod):
+    """ For .demote command, do demote targeted person """
+    if not dmod.text[0].isalpha() and dmod.text[0] not in ("/", "#", "@", "!"):
+        trights = ChatAdminRights(
+            add_admins=None,
+            invite_users=None,
+            change_info=None,
+            ban_users=None,
+            delete_messages=None,
+            pin_messages=None
         )
         chat=await e.get_chat()
         rights = chat.admin_rights
@@ -73,11 +72,13 @@ async def demote(e):
         if not rights and not rights2:
             await e.edit("`Ooof Jeepeo, U aren't an admin!`")
             return
-        await e.edit("`Trying to demote the bitch.....`")
-        time.sleep(3)
+        await dmod.edit("`Demoting...`")
+
         try:
             await bot(
-            EditAdminRequest(e.chat_id, (await e.get_reply_message()).sender_id, rights)
+                EditAdminRequest(dmod.chat_id,
+                                 (await dmod.get_reply_message()).sender_id,
+                                 trights)
             )
         except Exception:
             await e.edit("`You Don't have sufficient permissions to demhott`")
@@ -104,15 +105,23 @@ async def thanos(e):
             send_inline=True,
             embed_links=True,
         )
-        if (await e.get_reply_message()).sender_id in BRAIN_CHECKER:
-            await e.edit("`Ban Error! I am not supposed to ban this user`")
+
+        sender = await bon.get_reply_message()
+        try:
+            if sender.sender_id in BRAIN_CHECKER:
+                await bon.edit("`Ban Error! I am not supposed to ban this user`")
+                return
+        except AttributeError:
+            await bon.edit("`You don't seems to do this right`")
             return
-        await e.edit("`Taking last photo of this bitch!Wow! going to kill!`")
+
+        await bon.edit("`Whacking the pest!`")
         time.sleep(5)
         try:
             await bot(
                 EditBannedRequest(
-                    bon.chat_id, (await bon.get_reply_message()).sender_id,
+                    bon.chat_id,
+                    sender.sender_id,
                     rights
                 )
             )
@@ -168,7 +177,6 @@ async def spider(e):
 async def triggered_ban(triggerbon):
     ban_id = int(triggerbon.text[13:])
     if triggerbon.sender_id in BRAIN_CHECKER:  # non-working module#
->>>>>>> 59eeaa1... [REFACTOR]: admin: Use BadRequestError instead of using Exception (8)
         rights = ChatBannedRights(
             until_date=None,
             view_messages=True,
@@ -196,9 +204,23 @@ async def triggered_ban(triggerbon):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.unmute$"))
 async def unmoot(unmot):
     if not unmot.text[0].isalpha() and unmot.text[0] not in ("/", "#", "@", "!"):
+        rights = ChatBannedRights(
+            until_date=None,
+            send_messages=None,
+            send_media=None,
+            send_stickers=None,
+            send_gifs=None,
+            send_games=None,
+            send_inline=None,
+            embed_links=None,
+            )
         from userbot.modules.sql_helper.spam_mute_sql import unmute
-
         unmute(unmot.chat_id, str((await unmot.get_reply_message()).sender_id))
+        await bot(EditBannedRequest(
+            unmot.chat_id,
+            unmot.sender_id,
+            rights
+            ))
         await unmot.edit("```Unmuted Successfully```")
 
 
@@ -212,22 +234,34 @@ async def muter(e):
         return
     mootd = is_muted(moot.chat_id)
     gmootd = is_gmuted(moot.sender_id)
+    rights = ChatBannedRights(
+                until_date=None,
+                send_messages=True,
+                send_media=True,
+                send_stickers=True,
+                send_gifs=True,
+                send_games=True,
+                send_inline=True,
+                embed_links=True,
+                )
     if mootd:
         for i in mootd:
             if str(i.sender) == str(moot.sender_id):
                 await moot.delete()
+                await bot(EditBannedRequest(
+                    moot.chat_id,
+                    moot.sender_id,
+                    rights
+                    ))
     for i in gmootd:
         if i.sender == str(moot.sender_id):
             await moot.delete()
 
-
 @bot.on(events.NewMessage(outgoing=True, pattern="^.ungmute$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.ungmute$"))
 async def ungmoot(ungmoot):
->>>>>>> 59eeaa1... [REFACTOR]: admin: Use BadRequestError instead of using Exception (8)
     if not ungmoot.text[0].isalpha() and ungmoot.text[0] \
             not in ("/", "#", "@", "!"):
-
         try:
             from userbot.modules.sql_helper.gmute_sql import ungmute
         except:
@@ -250,8 +284,9 @@ async def gmute(e):
             print(er)
             await e.edit("`Ooh my Jeepeo connect me to DB!`")
             return
-        gmute(str((await e.get_reply_message()).sender_id))
-        await e.edit("`Grabs a huge, sticky duct tape!`")
+
+        gmute(str((await gspdr.get_reply_message()).sender_id))
+        await gspdr.edit("`Grabs a huge, sticky duct tape!`")
         time.sleep(5)
         await e.delete()
         await e.respond("`Taped!`")
