@@ -29,15 +29,9 @@ async def fastpurger(purg):
 
         if msgs:
             await bot.delete_messages(chat, msgs)
-<<<<<<< HEAD
-        r = await bot.send_message(
-            e.chat_id,
-            "`Master! my boy😎 , Fast purge is completed!\n`Purged "
-=======
         done = await bot.send_message(
             purg.chat_id,
             "`Fast purge complete!\n`Purged "
->>>>>>> 4d85bd6... [REFACTOR]: modules: purge: cleanups
             + str(count)
             + " messages. **Dont worry! This msg will deleted soonly!.**",
         )
@@ -133,13 +127,8 @@ async def selfdestruct(e):
             + str(counter)
             + " seconds`"
         )
-<<<<<<< HEAD
-        await e.delete()
-        x=await bot.send_message(e.chat_id, text)
-=======
         await destroy.delete()
         smsg = await bot.send_message(destroy.chat_id, text)
->>>>>>> 4d85bd6... [REFACTOR]: modules: purge: cleanups
         time.sleep(counter)
         await x.delete()
         if LOGGER:
