@@ -103,12 +103,6 @@ async def thanos(e):
             send_inline=True,
             embed_links=True,
         )
-<<<<<<< HEAD
-        if (await e.get_reply_message()).sender_id in BRAIN_CHECKER:
-            await e.edit("`Ban Error! I am not supposed to ban this user`")
-            return
-        await e.edit("`Taking last photo of this bitch!Wow! going to kill!`")
-=======
 
         sender = await bon.get_reply_message()
         try:
@@ -120,7 +114,6 @@ async def thanos(e):
             return
 
         await bon.edit("`Whacking the pest!`")
->>>>>>> 6239efc... [FIXUP]: modules: admin: use AttributeError as ExceptionHandler
         time.sleep(5)
         try:
             await bot(

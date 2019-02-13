@@ -145,30 +145,6 @@ async def log(e):
         await e.delete()
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True, pattern="^.speed$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.speed$"))
-async def speedtest(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        l = await e.reply("`My Master! is Running speed test . . .`")
-        k = subprocess.run(["speedtest-cli"], stdout=subprocess.PIPE)
-        await l.edit("`" + k.stdout.decode()[:-1] + "`")
-        await e.delete()
-
-
-@bot.on(events.NewMessage(outgoing=True, pattern="^.nearestdc$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.nearestdc$"))
-async def neardc(e):
-    result = await bot(functions.help.GetNearestDcRequest())
-    await e.edit(
-        f"Country : `{result.country}` \n"
-        f"Nearest Datacenter : `{result.nearest_dc}` \n"
-        f"This Datacenter : `{result.this_dc}`"
-    )
-
-
-=======
->>>>>>> 97d1d61... userbot: modules: www: split some networky-stuff modules out of misc
 @bot.on(events.NewMessage(outgoing=True, pattern="^.hash (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.hash (.*)"))
 async def hash(e):
