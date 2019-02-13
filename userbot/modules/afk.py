@@ -176,27 +176,6 @@ async def type_afk_is_not_true(e):
                     + str(USERS[i])
                     + " messages`",
                 )
-<<<<<<< HEAD
-                for i in USERS:
-                    name = await bot.get_entity(i)
-                    name0 = str(name.first_name)
-                    await bot.send_message(
-                        LOGGER_GROUP,
-                        "["
-                        + name0
-                        + "](tg://user?id="
-                        + str(i)
-                        + ")"
-                        + " sent you "
-                        + "`"
-                        + str(USERS[i])
-                        + " messages`",
-                    )
-            COUNT_MSG = 0
-            USERS = {}
-            AFKREASON = "Not Online"
-=======
         COUNT_MSG = 0
         USERS = {}
         AFKREASON = "No Reason"
->>>>>>> 136a47efabd0e8da7879a6addb7d18e6de51593e

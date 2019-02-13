@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import sqlite3
-=======
-
->>>>>>> 136a47efabd0e8da7879a6addb7d18e6de51593e
 import time
 
 from telethon import events
@@ -43,11 +38,8 @@ async def wizzard(e):
             await bot(
             EditAdminRequest(e.chat_id, (await e.get_reply_message()).sender_id, rights)
             )
-<<<<<<< HEAD
-=======
         except Exception:
             await e.edit("`You Don't have sufficient permissions to paramod`")
->>>>>>> 136a47efabd0e8da7879a6addb7d18e6de51593e
 
         except BadRequestError:
             await promt.edit(
@@ -86,11 +78,8 @@ async def demote(e):
             await bot(
             EditAdminRequest(e.chat_id, (await e.get_reply_message()).sender_id, rights)
             )
-<<<<<<< HEAD
-=======
         except Exception:
             await e.edit("`You Don't have sufficient permissions to demhott`")
->>>>>>> 136a47efabd0e8da7879a6addb7d18e6de51593e
 
         except BadRequestError:
             await dmod.edit("`You Don't have sufficient permissions to demhott`")
@@ -189,13 +178,10 @@ async def triggered_ban(triggerbon):
             send_inline=True,
             embed_links=True,
         )
-<<<<<<< HEAD
-=======
 
         if ban_id in BRAIN_CHECKER:
             await triggerbon.edit("`Sorry Master!`")
             return
->>>>>>> 136a47efabd0e8da7879a6addb7d18e6de51593e
 
         time.sleep(5)
         await bot(EditBannedRequest(triggerbon.chat_id, ban_id, rights))

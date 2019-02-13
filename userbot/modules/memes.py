@@ -405,10 +405,6 @@ async def bluetext(bt):
         await bt.edit(
             "`BLUETEXT MUST CLICK.`\n"
             "`Are you a stupid animal which is attracted to colours?`"
-<<<<<<< HEAD
-=======
-            >>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
->>>>>>> 136a47efabd0e8da7879a6addb7d18e6de51593e
         )
 
 
