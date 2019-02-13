@@ -1,6 +1,7 @@
 import sqlite3
 import subprocess
 import sys, os
+import time
 import dotenv
 from alchemysession import AlchemySessionContainer
 #from argparse import ArgumentParser
@@ -26,81 +27,7 @@ subprocess.run(
     ],
     stdout=subprocess.PIPE,
 )
-<<<<<<< HEAD
-if UPDATER=="True":
-    subprocess.run(
-        [
-            "git",
-            "remote",
-            "rm",
-            "pull340913",
-        ],
-        stdout=subprocess.PIPE,
-    )
-    subprocess.run(
-        [
-            "git",
-            "remote",
-            "add",
-            "pull340913",
-            "https://github.com/baalajimaestro/Telegram-UserBot"
-        ],
-        stdout=subprocess.PIPE,
-    )
-    subprocess.run(
-        [
-            "git",
-            "pull",
-            "pull340913",
-            "modular",
-        ],
-        stdout=subprocess.PIPE,
-    )
-    if len(sys.argv)==1:
-        if BUILD_CHOICE == "stable":
-            tyq=subprocess.run(
-            [
-            "git",
-            "tag",
-            "-l",
-            ],
-            stdout=subprocess.PIPE,
-            ).stdout.decode().split("\n")
-            subprocess.run(
-            [
-            "git",
-            "checkout",
-            "tags/"+tyq[-2],
-            ],
-            stdout=subprocess.PIPE,
-            )
-    if len(sys.argv) == 4:
-        tyq=subprocess.run(
-        [
-        "git",
-        "tag",
-        "-l",
-        ],
-        stdout=subprocess.PIPE,
-        ).stdout.decode().split("\n")
-        subprocess.run(
-        [
-        "git",
-        "checkout",
-        "tags/"+tyq[-2],
-        ],
-        stdout=subprocess.PIPE,
-        )
-    print("Your Bot is up-to-date. Bot Spinning up!")
-else:
-    print("Updater disabled, spinning the bot without updating.")
-import logging
-from sqlalchemy import create_engine
-from telethon import TelegramClient, events
-=======
->>>>>>> 98e8a44... userbot: main, init: remove redundant commands and bump to v2.2-a
 
-import time
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO
@@ -108,28 +35,34 @@ logging.basicConfig(
 LOGS = logging.getLogger(__name__)
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     LOGS.error(
-<<<<<<< HEAD
-        "You MUST have a python version of at least 3.6. Multiple features depend on this. Bot quitting."
-=======
         "You MUST have a python version of at least 3.6." \
         "Multiple features depend on this. Bot quitting."
->>>>>>> 871fa92... [REFACTOR] : Linting the stuff (3)
     )
     quit(1)
 try:
     print(___________PLOX_______REMOVE_____THIS_____LINE__________)
 except NameError:
     API_KEY = os.environ.get("API_KEY", None)
+    
     API_HASH = os.environ.get("API_HASH", None)
+    
     LOGGER_GROUP = int(os.environ.get("LOGGER_GROUP","0"))
+    
     LOGGER = os.environ.get(
         "LOGGER", None
     )  # Incase you want to turn off logging, put this to false
+    
     PM_AUTO_BAN = os.environ.get("PM_AUTO_BAN", None)
+    
     CONSOLE_LOGGER_VERBOSE = os.environ.get("CONSOLE_LOGGER_VERBOSE", None)
+    
     DB_URI = os.environ.get("DB_URI", None)
+    
     SCREENSHOT_LAYER_ACCESS_KEY = os.environ.get("SCREENSHOT_LAYER_ACCESS_KEY", None)
+    
+
     OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
+    
     SUDO = os.environ.get("SUDO", None)
     if CONSOLE_LOGGER_VERBOSE:
         logging.basicConfig(
@@ -139,14 +72,10 @@ except NameError:
         LOGS = logging.getLogger(__name__)
 else:
     LOGS.error(
-<<<<<<< HEAD
-        "Your config file seems to be un-edited. Doing so is not allowed. Bot exiting!"
-=======
         "Your config file seems to be un-edited."
         "Doing so is not allowed. Bot exiting!"
->>>>>>> 871fa92... [REFACTOR] : Linting the stuff (3)
     )
-    quit(1)
+[<64;9;32M    quit(1)
 bot = TelegramClient("userbot", API_KEY, API_HASH)
 #else:
 #    bot = TelegramClient(None, API_KEY, API_HASH)
