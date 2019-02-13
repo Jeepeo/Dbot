@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.types import ChannelBannedRights
-from telethon.errors import UserAdminInvalidError
-from telethon.errors import ChatAdminRequiredError
-from telethon.errors import ChannelInvalidError
-from telethon.tl.functions.channels import EditAdminRequest
-from telethon.tl.types import ChannelAdminRights
-import time
-=======
->>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
 import sqlite3
-=======
->>>>>>> 59eeaa1... [REFACTOR]: admin: Use BadRequestError instead of using Exception (8)
 import time
 
 from telethon import events
@@ -53,21 +39,11 @@ async def wizzard(e):
             await bot(
             EditAdminRequest(e.chat_id, (await e.get_reply_message()).sender_id, rights)
             )
-<<<<<<< HEAD
-<<<<<<< HEAD
-        except Exception as er:
-            await e.edit("`Ooof! Jeepeo , U dont have permission for that:-(`")
-=======
-        except Exception:
-            await e.edit("`You Don't have sufficient permissions to paramod`")
->>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
-=======
 
         except BadRequestError:
             await promt.edit(
                 "`You Don't have sufficient permissions to parmod`"
                 )
->>>>>>> 59eeaa1... [REFACTOR]: admin: Use BadRequestError instead of using Exception (8)
             return
         await e.edit("`Promoted the bitch Successfully!`")
 
@@ -101,19 +77,9 @@ async def demote(e):
             await bot(
             EditAdminRequest(e.chat_id, (await e.get_reply_message()).sender_id, rights)
             )
-<<<<<<< HEAD
-<<<<<<< HEAD
-        except Exception as er:
-            await e.edit("`Ooof! Jeepeo , U dont have permission for that :-/`")
-=======
-        except Exception:
-            await e.edit("`You Don't have sufficient permissions to demhott`")
->>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
-=======
 
         except BadRequestError:
             await dmod.edit("`You Don't have sufficient permissions to demhott`")
->>>>>>> 59eeaa1... [REFACTOR]: admin: Use BadRequestError instead of using Exception (8)
             return
         await e.edit("`Demoted the bitch Successfully!`")
 
@@ -142,15 +108,6 @@ async def thanos(e):
         try:
             await bot(
                 EditBannedRequest(
-<<<<<<< HEAD
-                    e.chat_id, (await e.get_reply_message()).sender_id, rights
-                )
-            )
-        except:
-            if e.sender_id in BRAIN_CHECKER:
-                await e.respond(
-                    "<triggerban> " + str((await e.get_reply_message()).sender_id)
-=======
                     bon.chat_id, (await bon.get_reply_message()).sender_id,
                     rights
                 )
@@ -161,7 +118,6 @@ async def thanos(e):
                 await bon.respond(
                     "<triggerban> " +
                     str((await bon.get_reply_message()).sender_id)
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
                 )
                 return
         await e.delete()
@@ -182,13 +138,8 @@ async def spider(e):
             return
         try:
             from userbot.modules.sql_helper.spam_mute_sql import mute
-<<<<<<< HEAD
-        except Exception as er:
-            await e.edit("`Ooof Jeepeo , connect to DB!`")
-=======
         except Exception:
             await e.edit("`Running on Non-SQL mode!`")
->>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
             return
         chat=await e.get_chat()
         rights = chat.admin_rights
@@ -204,49 +155,15 @@ async def spider(e):
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP,
-<<<<<<< HEAD
-                str((await e.get_reply_message()).sender_id) + " was muted.",
-=======
                 str((await spdr.get_reply_message()).sender_id) +
                 " was muted.",
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
             )
 
 
 @bot.on(events.NewMessage(incoming=True, pattern="<triggerban>"))
-<<<<<<< HEAD
-async def triggered_ban(e):
-<<<<<<< HEAD
-        message = e.text
-        ban_id = int(e.text[13:])
-        if e.sender_id in BRAIN_CHECKER:  # non-working module#
-            rights = ChannelBannedRights(
-                until_date=None,
-                view_messages=True,
-                send_messages=True,
-                send_media=True,
-                send_stickers=True,
-                send_gifs=True,
-                send_games=True,
-                send_inline=True,
-                embed_links=True,
-            )
-            if ban_id in BRAIN_CHECKER:
-                await e.edit("`Sorry Master!`")
-                return
-            await e.edit("`Command from my Master!`")
-            time.sleep(5)
-            await bot(EditBannedRequest(e.chat_id, ban_id, rights))
-            await e.delete()
-            await bot.send_message(e.chat_id, "Job was done, Master! Gimme Cookies!")
-=======
-    ban_id = int(e.text[13:])
-    if e.sender_id in BRAIN_CHECKER:  # non-working module#
-=======
 async def triggered_ban(triggerbon):
     ban_id = int(triggerbon.text[13:])
     if triggerbon.sender_id in BRAIN_CHECKER:  # non-working module#
->>>>>>> 59eeaa1... [REFACTOR]: admin: Use BadRequestError instead of using Exception (8)
         rights = ChatBannedRights(
             until_date=None,
             view_messages=True,
@@ -258,31 +175,12 @@ async def triggered_ban(triggerbon):
             send_inline=True,
             embed_links=True,
         )
-<<<<<<< HEAD
-    if ban_id in BRAIN_CHECKER:
-        await e.edit("`Sorry Master!`")
-        return
-<<<<<<< HEAD
-    await e.edit("`Command from my Master!`")
-    time.sleep(5)
-    await bot(EditBannedRequest(e.chat_id, ban_id, rights))
-    await e.delete()
-    await bot.send_message(e.chat_id, "Job was done, Master! Gimme Cookies!")
->>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
-=======
-=======
-
-        if ban_id in BRAIN_CHECKER:
-            await triggerbon.edit("`Sorry Master!`")
-            return
->>>>>>> 078c5dd... modules: admin: fix indentation error
 
         time.sleep(5)
         await bot(EditBannedRequest(triggerbon.chat_id, ban_id, rights))
         await triggerbon.delete()
         await bot.send_message(triggerbon.chat_id,
                                "Job was done, Master! Gimme Cookies!")
->>>>>>> 59eeaa1... [REFACTOR]: admin: Use BadRequestError instead of using Exception (8)
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.unmute$"))
@@ -303,17 +201,6 @@ async def muter(e):
         from userbot.modules.sql_helper.gmute_sql import is_gmuted
     except:
         return
-<<<<<<< HEAD
-    L = is_muted(e.chat_id)
-    K = is_gmuted(e.sender_id)
-    if L:
-        for i in L:
-            if str(i.sender) == str(e.sender_id):
-                await e.delete()
-    for i in K:
-        if i.sender == str(e.sender_id):
-            await e.delete()
-=======
     mootd = is_muted(moot.chat_id)
     gmootd = is_gmuted(moot.sender_id)
     if mootd:
@@ -323,24 +210,14 @@ async def muter(e):
     for i in gmootd:
         if i.sender == str(moot.sender_id):
             await moot.delete()
->>>>>>> 871fa92... [REFACTOR] : Linting the stuff (3)
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.ungmute$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.ungmute$"))
-<<<<<<< HEAD
-<<<<<<< HEAD
-async def ungmute(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-=======
-async def ungmute(ungmoot):
-=======
 async def ungmoot(ungmoot):
->>>>>>> 59eeaa1... [REFACTOR]: admin: Use BadRequestError instead of using Exception (8)
     if not ungmoot.text[0].isalpha() and ungmoot.text[0] \
             not in ("/", "#", "@", "!"):
 
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
         try:
             from userbot.modules.sql_helper.gmute_sql import ungmute
         except:

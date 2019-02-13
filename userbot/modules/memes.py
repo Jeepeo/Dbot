@@ -91,16 +91,6 @@ async def copypasta(cp):
         await cp.edit(reply_text)
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True, pattern="^.vapor"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.vapor"))
-async def vapor(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message = e.text
-        if message[7:]:
-            message = str(message[7:])
-=======
 @bot.on(events.NewMessage(outgoing=True, pattern="^.vapor (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.vapor (.*)"))
 async def vapor(vpr):
@@ -109,7 +99,6 @@ async def vapor(vpr):
         message = vpr.text
         if message[7:]:
             message = vpr.pattern_match.group(1)
->>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
         elif textx:
             message = textx
             message = str(message.message)
@@ -121,16 +110,6 @@ async def vapor(vpr):
         await vpr.edit(reply_text)
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True, pattern="^.str"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.str"))
-async def stretch(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message = e.text
-        if message[5:]:
-            message = str(message[5:])
-=======
 @bot.on(events.NewMessage(outgoing=True, pattern="^.str (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.str (.*)"))
 async def stretch(stret):
@@ -139,7 +118,6 @@ async def stretch(stret):
         message = stret.text
         if message[5:]:
             message = stret.pattern_match.group(1)
->>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
         elif textx:
             message = textx
             message = str(message.message)
@@ -152,16 +130,6 @@ async def stretch(stret):
         await stret.edit(reply_text)
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True, pattern="^.zal"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.zal"))
-async def zal(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        textx = await e.get_reply_message()
-        message = e.text
-        if message[4:]:
-            message = str(message[4:])
-=======
 @bot.on(events.NewMessage(outgoing=True, pattern="^.zal (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.zal (.*)"))
 async def zal(zgfy):
@@ -170,7 +138,6 @@ async def zal(zgfy):
         message = zgfy.text
         if message[4:]:
             message = zgfy.pattern_match.group(1)
->>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
         elif textx:
             message = textx
             message = str(message.message)
@@ -415,15 +382,6 @@ async def spongemocktext(mock):
         await mock.edit(reply_text)
 
 
-<<<<<<< HEAD
-@bot.on(events.NewMessage(outgoing=True, pattern="^.clap"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.clap"))
-async def claptext(e):
-    textx = await e.get_reply_message()
-    message = e.text
-    if message[6:]:
-        message = str(message[6:])
-=======
 @bot.on(events.NewMessage(outgoing=True, pattern="^.clap (.*)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.clap (.*)"))
 async def claptext(memereview):
@@ -431,7 +389,6 @@ async def claptext(memereview):
     message = memereview.text
     if message[6:]:
         message = memereview.pattern_match.group(1)
->>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
     elif textx:
         message = textx
         message = str(message.message)
@@ -443,18 +400,11 @@ async def claptext(memereview):
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.bt$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.bt$"))
-<<<<<<< HEAD
-async def bluetext(e):
-    if await e.get_reply_message():
-        await e.edit(
-            "`BLUETEXT MUST CLICK.\nAre you a stupid animal which is attracted to colours?`"
-=======
 async def bluetext(bt):
     if await bt.get_reply_message():
         await bt.edit(
             "`BLUETEXT MUST CLICK.`\n"
             "`Are you a stupid animal which is attracted to colours?`"
->>>>>>> 6aefeca... [REFACTOR]: memes: Another Lintings (7)
         )
 
 

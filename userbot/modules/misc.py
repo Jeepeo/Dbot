@@ -15,13 +15,9 @@ from telethon import events
 from userbot import LOGGER, LOGGER_GROUP, bot
 from userbot.modules.rextester.api import Rextester, UnknownLanguage
 
-<<<<<<< HEAD
-dogbin_url = "https://del.dog/"
-=======
 DOGBIN_URL = "https://del.dog/"
 
 
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
 @bot.on(events.NewMessage(outgoing=True, pattern="^.pip (.+)"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.pip (.+)"))
 async def pipcheck(pip):
@@ -58,16 +54,8 @@ async def paste(pstl):
         try:
             hastebin_final_url = hastebin.post(message)
         except Exception:
-<<<<<<< HEAD
-            hastebin_failed = True
-            hastebin_final_url = "`Failed to reach hastebin`"     
-            
-        if r.status_code != 200:
-=======
-            hastebin_final_url = "`Failed to reach hastebin`"
 
         if r.status_code == 200:
->>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
             response = r.json()
             key = response['key']
             dogbin_final_url = DOGBIN_URL + key
@@ -79,15 +67,8 @@ async def paste(pstl):
         else:
             reply_text = f'`Pasted successfully!`\n\n`Dogbin URL`: Failed to reach dogbin\n`Hastebin URL`: {hastebin_final_url}'
 
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
->>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
-        await e.edit(reply_text)
-=======
         await pstl.edit(reply_text)
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
         if LOGGER:
             await bot.send_message(
                 LOGGER_GROUP,
@@ -417,15 +398,6 @@ async def rextestercli(e):
 @bot.on(events.NewMessage(outgoing=True, pattern="^.unmutechat$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.unmutechat$"))
 async def unmute_chat(e):
-<<<<<<< HEAD
-        if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-            try:
-                from userbot.modules.sql_helper.keep_read_sql import unkread
-            except:
-                await e.edit('`Ooof ! Jeepeo connect me to DB`')
-            unkread(str(e.chat_id))
-            await e.edit("```Unmuted this chat Successfully```")
-=======
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         try:
             from userbot.modules.sql_helper.keep_read_sql import unkread
@@ -433,28 +405,11 @@ async def unmute_chat(e):
             await e.edit('`Running on Non-SQL Mode!`')
         unkread(str(e.chat_id))
         await e.edit("```Unmuted this chat Successfully```")
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.mutechat$"))
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.mutechat$"))
 async def mute_chat(e):
-<<<<<<< HEAD
-        if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-            try:
-                from userbot.modules.sql_helper.keep_read_sql import kread
-            except Exception as er:
-                print(er)
-                await e.edit("`Ooof ! Jeepeo connect me to DB!`")
-                return
-            await e.edit(str(e.chat_id))
-            kread(str(e.chat_id))
-            await e.edit("`Shhh , chat is now silenced-Jeepeo!`")
-            if LOGGER:
-                await bot.send_message(
-                    LOGGER_GROUP,
-                    str(e.chat_id) + " was silenced.")
-=======
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         try:
             from userbot.modules.sql_helper.keep_read_sql import kread
@@ -469,7 +424,6 @@ async def mute_chat(e):
             await bot.send_message(
                 LOGGER_GROUP,
                 str(e.chat_id) + " was silenced.")
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
 
 
 @bot.on(events.NewMessage(incoming=True))

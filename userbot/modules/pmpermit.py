@@ -17,24 +17,9 @@ async def permitpm(e):
                 from userbot.modules.sql_helper.pm_permit_sql import is_approved
             except:
                 return
-<<<<<<< HEAD
-            E = is_approved(e.chat_id)
-            if not E and e.text != "`Hey! This is My Master's Assistant. \n\nMy master doesn't said me about your PM. \
-I will say about you to My master!😎 He actually reply to all execpt👇.\n\n\
-He doesn't reply to retard/shit people .😝`" :
-=======
             apprv = is_approved(e.chat_id)
-<<<<<<< HEAD
-            if not apprv and e.text != "`Bleep Blop! This is a Bot. Don't fret. \n\nMy Master hasn't approved you to PM. \
-Please wait for my Master to look in, he would mostly approve PMs.\n\n\
-As far as i know, he doesn't usually approve Retards.`" :
->>>>>>> 8c2fca4... [REFACTOR] : Linting the stuff (1)
-                await e.reply(
-                    "` Hey! This is My Master's Assistant\n\nMy Master doesn't said me about your PM \
-I will say about you to My Master😎. He actually reply to all execpt👇\n\n\
-He doesn't reply to retard/shit people.😝.`"
-=======
 
+            
             if not apprv and e.text != \
                 ("`Bleep Blop! This is a Bot. Don't fret. \n\n`"
                  "`My Master hasn't approved you to PM.`"
@@ -46,7 +31,6 @@ He doesn't reply to retard/shit people.😝.`"
                     "`My Master hasn't approved you to PM.`"
                     "`Please wait for my Master to look in, he would mostly approve PMs.`\n\n"
                     "`As far as i know, he doesn't usually approve Retards.`"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
                 )
 
                 if NOTIF_OFF:
@@ -57,12 +41,8 @@ He doesn't reply to retard/shit people.😝.`"
                     COUNT_PM[e.chat_id] = COUNT_PM[e.chat_id] + 1
                 if COUNT_PM[e.chat_id] > 4:
                     await e.respond(
-<<<<<<< HEAD
-                        "`Bitch! You are spaming chat! Bitch!mc bc mf ! I am going to report you bitch!.`"
-=======
                         "`You were spamming my Master's PM, which I don't like.`"
                         "`I'mma Report Spam.`"
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
                     )
                     del COUNT_PM[e.chat_id]
                     await bot(BlockRequest(e.chat_id))
@@ -106,49 +86,29 @@ async def approvepm(apprvpm):
         except:
             await apprvpm.edit("`Running on Non-SQL mode!`")
             return
-<<<<<<< HEAD
-        approve(e.chat_id)
-        await e.edit("`Mmm! You are approved to PM ,My Master!`")
-        if LOGGER:
-            aname = await bot.get_entity(e.chat_id)
-            name0 = str(aname.first_name)
-            await bot.send_message(
-                LOGGER_GROUP,
-                "["
-                + name0
-                + "](tg://user?id="
-                + str(e.chat_id)
-                + ")"
-                + " My Master! has approved you to PM!.",
-            )
-@bot.on(events.NewMessage(outgoing=True, pattern="^.disapprove$"))
-@bot.on(events.MessageEdited(outgoing=True, pattern="^.disapprove$"))
-async def disapprovepm(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        try:
-            from userbot.modules.sql_helper.pm_permit_sql import dissprove
-        except:
-            await e.edit("`Running on Non-SQL mode!`")
-            return
-        dissprove(e.chat_id)
-        await e.edit("`Sad!😐 You have been disapproved to PM! My master!`")
-=======
-        approve(apprvpm.chat_id)
-        await apprvpm.edit("`Approved to PM!`")
->>>>>>> a951eac... [REFACTOR] : Linting the stuff (5)
-        if LOGGER:
+
+
+        if apprvpm.reply_to_msg_id:
+            reply = await apprvpm.get_reply_message()
+            replied_user = await bot(GetFullUserRequest(reply.from_id))
+            aname = replied_user.user.id
+            name0 = str(replied_user.user.first_name)
+            approve(replied_user.user.id)
+        else:
+            approve(apprvpm.chat_id)
             aname = await bot.get_entity(apprvpm.chat_id)
             name0 = str(aname.first_name)
-            await bot.send_message(
-                LOGGER_GROUP,
-                "["
-                + name0
-                + "](tg://user?id="
-                + str(apprvpm.chat_id)
-                + ")"
-                + " Was disapproved to PM! My .",
+
+        await apprvpm.edit(
+            f"[{name0}](tg://user?id={apprvpm.chat_id}) `Approved to PM!`"
             )
 
+        if LOGGER:
+            await bot.send_message(
+                LOGGER_GROUP,
+                f"[{name0}](tg://user?id={apprvpm.chat_id})"
+                " was approved to PM you.",
+            )
 
 @bot.on(events.NewMessage(outgoing=True,pattern="^.block$"))
 @bot.on(events.MessageEdited(outgoing=True,pattern="^.block$"))
