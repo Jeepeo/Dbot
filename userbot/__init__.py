@@ -16,93 +16,6 @@ from alchemysession import AlchemySessionContainer
 
 
 dotenv.load_dotenv("config.env")
-<<<<<<< HEAD
-UPDATER=os.environ.get("UPDATER", None)
-BUILD_CHOICE=os.environ.get("BUILD_CHOICE","stable")
-subprocess.run(["rm", "-rf", "brains.check"], stdout=subprocess.PIPE)
-subprocess.run(
-    [
-        "curl",
-        "-sLo",
-        "brains.check",
-        "https://storage.googleapis.com/project-aiml-bot/brains.check",
-    ],
-    stdout=subprocess.PIPE,
-)
-<<<<<<< HEAD
-if UPDATER=="True":
-    subprocess.run(
-        [
-            "git",
-            "remote",
-            "rm",
-            "pull340913",
-        ],
-        stdout=subprocess.PIPE,
-    )
-    subprocess.run(
-        [
-            "git",
-            "remote",
-            "add",
-            "pull340913",
-            "https://github.com/baalajimaestro/Telegram-UserBot"
-        ],
-        stdout=subprocess.PIPE,
-    )
-    subprocess.run(
-        [
-            "git",
-            "pull",
-            "pull340913",
-            "modular",
-        ],
-        stdout=subprocess.PIPE,
-    )
-    if len(sys.argv)==1:
-        if BUILD_CHOICE == "stable":
-            tyq=subprocess.run(
-            [
-            "git",
-            "tag",
-            "-l",
-            ],
-            stdout=subprocess.PIPE,
-            ).stdout.decode().split("\n")
-            subprocess.run(
-            [
-            "git",
-            "checkout",
-            "tags/"+tyq[-2],
-            ],
-            stdout=subprocess.PIPE,
-            )
-    if len(sys.argv) == 4:
-        tyq=subprocess.run(
-        [
-        "git",
-        "tag",
-        "-l",
-        ],
-        stdout=subprocess.PIPE,
-        ).stdout.decode().split("\n")
-        subprocess.run(
-        [
-        "git",
-        "checkout",
-        "tags/"+tyq[-2],
-        ],
-        stdout=subprocess.PIPE,
-        )
-    print("Your Bot is up-to-date. Bot Spinning up!")
-else:
-    print("Updater disabled, spinning the bot without updating.")
-import logging
-from sqlalchemy import create_engine
-from telethon import TelegramClient, events
-=======
->>>>>>> 98e8a44... userbot: main, init: remove redundant commands and bump to v2.2-a
-=======
 subprocess.run(["rm", "-rf", "brains.check"], stdout=subprocess.PIPE)
 
 URL = 'https://storage.googleapis.com/project-aiml-bot/brains.check'
@@ -110,7 +23,6 @@ GET = requests.get(URL)
 
 with open('brains.check', 'wb') as brains:
     brains.write(GET.content)
->>>>>>> a913733... init: use request binary for the brains getter
 
 import time
 logging.basicConfig(
@@ -120,12 +32,8 @@ logging.basicConfig(
 LOGS = logging.getLogger(__name__)
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     LOGS.error(
-<<<<<<< HEAD
-        "You MUST have a python version of at least 3.6. Multiple features depend on this. Bot quitting."
-=======
         "You MUST have a python version of at least 3.6." \
         "Multiple features depend on this. Bot quitting."
->>>>>>> 871fa92... [REFACTOR] : Linting the stuff (3)
     )
     quit(1)
 try:
@@ -151,12 +59,8 @@ except NameError:
         LOGS = logging.getLogger(__name__)
 else:
     LOGS.error(
-<<<<<<< HEAD
-        "Your config file seems to be un-edited. Doing so is not allowed. Bot exiting!"
-=======
         "Your config file seems to be un-edited."
         "Doing so is not allowed. Bot exiting!"
->>>>>>> 871fa92... [REFACTOR] : Linting the stuff (3)
     )
     quit(1)
 bot = TelegramClient("userbot", API_KEY, API_HASH)

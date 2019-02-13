@@ -2,6 +2,7 @@ import sqlite3
 import subprocess
 import sys, os
 import dotenv
+import requests
 from alchemysession import AlchemySessionContainer
 #from argparse import ArgumentParser
 
@@ -13,7 +14,9 @@ from alchemysession import AlchemySessionContainer
 
 #args = parser.parse_args()
 
+
 dotenv.load_dotenv("config.env")
+<<<<<<< HEAD
 UPDATER=os.environ.get("UPDATER", None)
 BUILD_CHOICE=os.environ.get("BUILD_CHOICE","stable")
 subprocess.run(["rm", "-rf", "brains.check"], stdout=subprocess.PIPE)
@@ -99,6 +102,15 @@ from sqlalchemy import create_engine
 from telethon import TelegramClient, events
 =======
 >>>>>>> 98e8a44... userbot: main, init: remove redundant commands and bump to v2.2-a
+=======
+subprocess.run(["rm", "-rf", "brains.check"], stdout=subprocess.PIPE)
+
+URL = 'https://storage.googleapis.com/project-aiml-bot/brains.check'
+GET = requests.get(URL)
+
+with open('brains.check', 'wb') as brains:
+    brains.write(GET.content)
+>>>>>>> a913733... init: use request binary for the brains getter
 
 import time
 logging.basicConfig(
