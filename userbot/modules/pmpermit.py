@@ -90,10 +90,6 @@ async def approvepm(apprvpm):
             await apprvpm.edit("`Running on Non-SQL mode!`")
             return
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b5f41b1... modules: pmpermit: Rework mechanics and introduce Reply-to-do-stuff
         if apprvpm.reply_to_msg_id:
             reply = await apprvpm.get_reply_message()
             replied_user = await bot(GetFullUserRequest(reply.from_id))

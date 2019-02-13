@@ -284,9 +284,6 @@ async def support_channel(e):
 @bot.on(events.MessageEdited(outgoing=True, pattern="^.botver$"))
 async def bot_ver(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-<<<<<<< HEAD
-        await e.edit("`UserBot Version: Modular r2.1.1-b`")
-=======
         ver = (
             "`UserBot Version: "
             + subprocess.run(
@@ -312,7 +309,6 @@ async def bot_ver(e):
         )
 
         await e.edit(ver + copoint)
->>>>>>> 174c989... modules: misc: use git describe and commit points for versioning
 
 
 @bot.on(events.NewMessage(outgoing=True, pattern="^.userid$"))
